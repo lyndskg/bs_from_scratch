@@ -14,6 +14,7 @@
 
 using namespace std;
 
+TEST_MAIN()
 
 // Demonstrate some basic assertions.
 TEST(test_default_constructor) {
@@ -40,32 +41,32 @@ TEST(test_get_input_mode) {
 
     cout << program.inputMode << "\n";
 }
-
-TEST(get_input_mode) {
-    Program program;
-
-    char* argv[] = {(char*)"program_name", (char*)"--mode", (char*)"USER"};
-    int argc = sizeof(argv) / sizeof(argv[0]);
-
-    program.get_options(argc, argv);
-    ASSERT_EQUAL(program.getInputMode(), "USER");
-    ASSERT_FALSE(program.invalidMode);
-
-    cout << program.inputMode << "\n";
-}
-
-TEST(test_set_input_mode) {
-    Program program;
-
-    char* argv[] = {(char*)"program_name", (char*)"--mode", (char*)"USER"};
-    int argc = sizeof(argv) / sizeof(argv[0]);
-
-    program.get_options(argc, argv);
-    ASSERT_EQUAL(program.getInputMode(), "USER");
-    ASSERT_FALSE(program.invalidMode);
-
-    cout << program.inputMode << "\n";
-}
+//
+//TEST(get_input_mode) {
+//    Program program;
+//
+//    char* argv[] = {(char*)"program_name", (char*)"--mode", (char*)"USER"};
+//    int argc = sizeof(argv) / sizeof(argv[0]);
+//
+//    program.get_options(argc, argv);
+//    ASSERT_EQUAL(program.getInputMode(), "USER");
+//    ASSERT_FALSE(program.invalidMode);
+//
+//    cout << program.inputMode << "\n";
+//}
+//
+//TEST(test_set_input_mode) {
+//    Program program;
+//
+//    char* argv[] = {(char*)"program_name", (char*)"--mode", (char*)"USER"};
+//    int argc = sizeof(argv) / sizeof(argv[0]);
+//
+//    program.get_options(argc, argv);
+//    ASSERT_EQUAL(program.getInputMode(), "USER");
+//    ASSERT_FALSE(program.invalidMode);
+//
+//    cout << program.inputMode << "\n";
+//}
 
 //TEST(test_get_help, valid_assertions) {
 //    Program program;
@@ -79,15 +80,15 @@ TEST(test_set_input_mode) {
 //    cout << program.inputMode << "\n";
 //}
 
-TEST(test_launch_algo) {
-    Program program;
-
-    char* argv[] = {(char*)"program_name", (char*)"--mode", (char*)"USER"};
-    int argc = sizeof(argv) / sizeof(argv[0]);
-
-    program.get_options(argc, argv);
-    ASSERT_EQUAL(program.getInputMode(), "USER");
-    ASSERT_FALSE(program.invalidMode);
-
-    cout << program.inputMode << "\n";
-}
+//TEST(test_launch_algo) {
+//    Program program;
+//
+//    char* argv[] = {(char*)"program_name", (char*)"--mode", (char*)"USER"};
+//    int argc = sizeof(argv) / sizeof(argv[0]);
+//
+//    program.get_options(argc, argv);
+//    ASSERT_EQUAL(program.getInputMode(), "USER");
+//    ASSERT_FALSE(program.invalidMode);
+//
+//    cout << program.inputMode << "\n";
+//}

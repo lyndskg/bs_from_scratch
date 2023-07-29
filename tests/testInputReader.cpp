@@ -18,7 +18,7 @@ using namespace std;
 // Demonstrate some basic assertions.
 TEST(test_default_constructor) {
     inputReader reader;
-    ASSERT_EQ(reader.mode, "USER");
+    ASSERT_EQUAL(reader.mode, "USER");
 }; // test_default_constructor
 
 // Demonstrate some basic assertions.

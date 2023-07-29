@@ -12,7 +12,7 @@
 
 #include "Program.h"
 //#include "libcurl/curl/curl.h"
-#include "blackScholesModel.h"
+#include "src/blackScholesModel.h"
 
 using namespace std;
 

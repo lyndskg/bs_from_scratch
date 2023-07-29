@@ -16,7 +16,7 @@
 // Include necessary database libraries
 
 //#include "csv.h" // Include the csv-parser library header
-#include "blackScholesModel.h"
+#include "src/blackScholesModel.h"
 #include "inputReader.h"
 #include "Program.h"
 

@@ -5,8 +5,8 @@ cmake_minimum_required(VERSION 3.25)
 project(bs_from_scratch CXX)
 set(CMAKE_CXX_STANDARD 20)
 
-# Set the output extension for C++ object files
-set(CMAKE_CXX_OUTPUT_EXTENSION .o)
+## Set the output extension for C++ object files
+#set(CMAKE_CXX_OUTPUT_EXTENSION .o)
 
 # Set additional compiler flags
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wconversion -Wall -Werror -Wextra -pedantic")
@@ -14,12 +14,15 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wconversion -Wall -Werror -Wextra -peda
 # Set the arm64 architecture as the target
 set(CMAKE_OSX_ARCHITECTURES arm64)
 
+add_subdirectory(src)
+add_subdirectory(test)
+
 # Add your main executable sources to the target (e.g., "bs" in this case)
 add_executable(bs
         	   main.cpp
                Program.cpp
         	   inputReader.cpp
-        	   blackScholesModel.cpp)
+		src/blackScholesModel.cpp)
 
 
 # Set the C++ standard library to libc++ (for macOS)

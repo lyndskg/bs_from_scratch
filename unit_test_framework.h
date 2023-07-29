@@ -34,11 +34,13 @@ using Test_func_t = void (*)();
     static TestRegisterer register_##name((#name), name);                     \
     static void name()
 
-#define TEST_MAIN()                                                           \
-    int main(int argc, char** argv) {                                         \
-        return TestSuite::get().run_tests(argc, argv);                        \
-    }                                                                         \
-    TEST_SUITE_INSTANCE();
+
+#define TEST_SUITE_INSTANCE()                                                 \
+    static TestSuiteDestroyer destroyer;                                      \
+    bool TestSuite::incomplete = false;                                       \
+    TestSuite* TestSuite::instance = &TestSuite::get()
+
+
 
 
 struct TestCase {
@@ -152,6 +154,11 @@ private:
 };
 std::ostream& operator<<(std::ostream& os, const TestFailure& test_failure);
 
+#define TEST_MAIN()
+int main(int argc, char **argv) {
+    return TestSuite::get().run_tests(argc, argv);
+}
+TEST_SUITE_INSTANCE();
 // ----------------------------------------------------------------------------
 
 // demangle, print_helper, and print contributed by Amir Kamil <akamil@umich.edu>
@@ -370,10 +377,7 @@ void assert_sequence_equal(First&& first, Second&& second, int line_number) {
 // DO NOT CHANGE THIS UNLESS YOU REEEEALLY KNOW WHAT
 // YOU'RE DOING. CONTACT akamil@umich.edu or jameslp@umich.edu IF
 // YOU HAVE QUESTIONS ABOUT THIS.
-#define TEST_SUITE_INSTANCE()                                                 \
-    static TestSuiteDestroyer destroyer;                                      \
-    bool TestSuite::incomplete = false;                                       \
-    TestSuite* TestSuite::instance = &TestSuite::get()
+
 
 void TestCase::run(bool quiet_mode) {
     try {

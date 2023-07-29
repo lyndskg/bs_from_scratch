@@ -8,7 +8,7 @@
 #define Program_h
 
 #include "inputReader.h"
-#include "blackScholesModel.h"
+#include "src/blackScholesModel.h"
 
 using namespace std;
 

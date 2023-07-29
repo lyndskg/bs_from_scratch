@@ -12,8 +12,8 @@
 #include "../inputReader.h"
 #include "../inputReader.cpp"
 #include "../Program.cpp"
-#include "../blackScholesModel.h"
-#include "../blackScholesModel.cpp"
+#include "../src/blackScholesModel.h"
+#include "../src/blackScholesModel.cpp"
 
 using namespace std;
 

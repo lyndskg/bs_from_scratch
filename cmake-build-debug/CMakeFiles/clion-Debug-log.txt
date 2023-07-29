@@ -1,13 +1,16 @@
 /private/var/folders/2k/1zjkt82s4j12s0hx2bfmmsl80000gn/T/AppTranslocation/7C12DE09-1F6F-4859-BC6D-1153D5F5F2FC/d/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/private/var/folders/2k/1zjkt82s4j12s0hx2bfmmsl80000gn/T/AppTranslocation/7C12DE09-1F6F-4859-BC6D-1153D5F5F2FC/d/CLion.app/Contents/bin/ninja/mac/ninja -G Ninja -S /Users/lyndseygu/Projects/C++/bs-from-scratch -B /Users/lyndseygu/Projects/C++/bs-from-scratch/cmake-build-debug
--- Configuring done
-CMake Error at CMakeLists.txt:48 (add_executable):
-  Cannot find source file:
+CMake Error at CMakeLists.txt:17 (add_subdirectory):
+  The source directory
 
-    schlisselTest.h
+    /Users/lyndseygu/Projects/C++/bs-from-scratch/src
 
-
-CMake Error at CMakeLists.txt:48 (add_executable):
-  No SOURCES given to target: test_bs
+  does not contain a CMakeLists.txt file.
 
 
-CMake Generate step failed.  Build files cannot be regenerated correctly.
+CMake Error at CMakeLists.txt:18 (add_subdirectory):
+  add_subdirectory given source "test" which is not an existing directory.
+
+
+-- Configuring incomplete, errors occurred!
+See also "/Users/lyndseygu/Projects/C++/bs-from-scratch/cmake-build-debug/CMakeFiles/CMakeOutput.log".
+See also "/Users/lyndseygu/Projects/C++/bs-from-scratch/cmake-build-debug/CMakeFiles/CMakeError.log".

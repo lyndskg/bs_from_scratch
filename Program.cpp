@@ -9,7 +9,7 @@
 
 #include "Program.h"
 #include "inputReader.h"
-#include "blackScholesModel.h"
+#include "src/blackScholesModel.h"
 
 using namespace std;
 
