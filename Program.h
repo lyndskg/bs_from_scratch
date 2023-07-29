@@ -28,6 +28,8 @@ class Program {
     string inputMode; // Program mode (i.e. USER, FILE, DB, or API)
     bool invalidMode;
     static constexpr int MAX_BUFFER_SIZE = 10000;
+    string external; // Name of the external file, database, or API
+    bool invalidExternal;
     
 /*------------------------------  CONSTRUCTORS  ------------------------------*/
     // Default constructor.
@@ -51,6 +53,7 @@ class Program {
 
     void setInputMode(const string& inputMode_);
 
+    const string& getExternal() const;
     
     // Prints a helpful message about how to use the program for the user when requested.
     //
@@ -64,8 +67,8 @@ class Program {
     // Time complexity: O(1)
     // Space complexity: O(1)
     void launchAlgo(blackScholesModel* model);
-    
-    
+
+
     // Reads and validates the input mode from the user.
     //
     // @Return: Returns the validated input mode as a string.

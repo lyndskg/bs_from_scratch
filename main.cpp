@@ -42,6 +42,8 @@ int main(int argc, char *argv[]) {
         // Reinitialize input mode based on user's specifications.
         program.inputMode = program.readInputMode();
 
+        // TODO: Ask user if they want default BS calc or w/ option Greeks or Heston.
+
         // Create a new instance of the blackScholesModel for each new run.
         blackScholesModel model;
         program.launchAlgo(&model);

@@ -25,7 +25,6 @@ class blackScholesModel; // Forward declaration of blackScholesModel class
 class inputReader {
   private:
 /*-------- HELPER FUNCTION VARIABLES (readDoubleInput, readOptionType) -----------*/
-    string input;
     
 /*------------------------------  HELPER FUNCTIONS  -------------------------------*/
 
@@ -40,7 +39,8 @@ class inputReader {
     
   public:
 /*------------------------------ CONSTRUCTORS  -------------------------------*/
-    
+    string mode;
+    string ext;
     // Default constructor.
     inputReader();
 
@@ -72,7 +72,7 @@ class inputReader {
     // Space complexity: O(1)
     //
     // TODO: IMPLEMENT
-    void readInputFromDB(blackScholesModel& model);
+//    void readInputFromDB(blackScholesModel& model);
     
     
     /* Reads input values from an API by making an HTTP request.

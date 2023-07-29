@@ -12,7 +12,6 @@
 
 #include "blackScholesModel.h"
 #include "Program.h"
-
 using namespace std;
 
 
@@ -23,7 +22,7 @@ using namespace std;
 
 /*------------------------------  CONSTRUCTORS  ------------------------------*/
 // Default constructor.
-blackScholesModel::blackScholesModel() {
+blackScholesModel::blackScholesModel() : version("1") {
     fast_io();
 
     underlyingPrice = getUnderlyingPrice();
@@ -37,20 +36,23 @@ blackScholesModel::blackScholesModel() {
 //
 // Initializes all member functions used in the pricing formula via getter methods.
 blackScholesModel::blackScholesModel(double underlyingPrice, double strikePrice, double riskFreeRate,
-                                     double timeToExpiration, double volatility) :
-        underlyingPrice(getUnderlyingPrice()), strikePrice(getStrikePrice()),
-        riskFreeRate(getRFR()), timeToExpiration(getTTE()),
-        volatility(getVolatility()) {
-    		fast_io();
+                                     double timeToExpiration, double volatility) {
+    fast_io();
 
-            d1_ = getD1();
-            d2_ = getD2();
+    underlyingPrice = getUnderlyingPrice();
+    strikePrice = getStrikePrice();
+    riskFreeRate = getRFR();
+    timeToExpiration = getTTE();
+    volatility = getVolatility();
 
-            // Initialize intermediate variable "d".
-            d_ = calculateD1(underlyingPrice, strikePrice, timeToExpiration, riskFreeRate, volatility);
+    d1_ = getD1();
+    d2_ = getD2();
 
-            // Calculate and store intermediate variable "K".
-            K_ = calculateK(d_);
+    // Initialize intermediate variable "d".
+    d_ = calculateD1(underlyingPrice, strikePrice, timeToExpiration, riskFreeRate, volatility);
+
+    // Calculate and store intermediate variable "K".
+    K_ = calculateK(d_);
     }
 
 

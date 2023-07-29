@@ -19,6 +19,8 @@ using namespace std;
 
 class blackScholesModel {
   public:
+
+    string version;
 /*------------------------------  CONSTRUCTORS  ------------------------------*/
     
     // Default constructor.

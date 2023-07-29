@@ -18,6 +18,8 @@
 //#include "csv.h" // Include the csv-parser library header
 #include "blackScholesModel.h"
 #include "inputReader.h"
+#include "Program.h"
+
 
 using namespace std;
 
@@ -77,11 +79,14 @@ size_t responseCallback(void* contents, size_t size, size_t nmemb, string* respo
 // ----------------------------------------------------------------------------
 
 // Default constructor.
-inputReader::inputReader() {
+inputReader::inputReader() : mode("USER") {
     // To speed up I/O.
     fast_io();
-
     ios_base::sync_with_stdio(false);
+
+    Program program;
+    mode = program.getInputMode();
+	ext = program.getExternal();
 }
 
 
@@ -197,7 +202,7 @@ void inputReader::readInputFromFile(blackScholesModel& model, const string& file
         // Convert the column values to appropriate data types
         double underlyingPriceValue, strikePriceValue, timeToExpirationValue,
                riskFreeRateValue, volatilityValue;
-        string optionTypeValue;
+        char optionTypeValue;
         
         try {
             underlyingPriceValue = stod(underlyingPrice);
@@ -205,6 +210,7 @@ void inputReader::readInputFromFile(blackScholesModel& model, const string& file
             timeToExpirationValue = stod(timeToExpiration);
             riskFreeRateValue = stod(riskFreeRate);
             volatilityValue = stod(volatility);
+            optionTypeValue = optionType[0];
 
         } catch (const exception& e) {
             cerr << "Error converting values in CSV file: " << e.what() << "\n";
@@ -212,42 +218,45 @@ void inputReader::readInputFromFile(blackScholesModel& model, const string& file
         } // try-catch
         
         // Validate the converted values if needed
-        if (!validateAndSetInputValues(model, underlyingPriceValue, strikePriceValue, timeToExpirationValue, riskFreeRateValue, volatilityValue, optionTypeValue)) {
+        if (!(validateAndSetInputValues(model,underlyingPriceValue, strikePriceValue,
+                                       timeToExpirationValue, riskFreeRateValue,
+                                       volatilityValue, optionTypeValue))) {
             cerr << "Invalid values in CSV file.\n";
             continue;
         } // if
     } // for
 } // readInputFromFile()
          
-
-// Reads input values from a database.
-void inputReader::readInputFromDB(blackScholesModel& model) {
-    try {
-        // Connect to the database.
-        cout << "Connecting to the database..\n";
-        
-        // Perform database query to retrieve the input values
-        double retrievedUnderlyingPrice = 0.0;
-        double retrievedStrikePrice = 0.0;
-        double retrievedTimeToExpiration = 0.0;
-        double retrievedRiskFreeRate = 0.0;
-        double retrievedVolatility = 0.0;
-        char retrievedOptionType = 'C';
-        
-        // Handle any exceptions that may occur during database operations
-        // throw std::runtime_error("Failed to connect to the database.");
-        
-        // Validate and set the retrieved input values
-        if (validateAndSetInputValues(model, retrievedUnderlyingPrice, retrievedStrikePrice,
-                                      retrievedTimeToExpiration, retrievedRiskFreeRate, retrievedVolatility, retrievedOptionType)) {
-            cout << "Input values retrieved from the database.\n";
-        } // if
-    
-    } catch (const exception& e) {
-        cerr << "Error: " << e.what() << endl;
-    } // try-catch
-    
-} // readInputFromDB()
+//
+//// Reads input values from a database.
+//void inputReader::readInputFromDB(blackScholesModel& model) {
+//    try {
+//        // Connect to the database.
+//        cout << "Connecting to the database..\n";
+//
+//        // Perform database query to retrieve the input values
+//        double retrievedUnderlyingPrice = 0.0;
+//        double retrievedStrikePrice = 0.0;
+//        double retrievedTimeToExpiration = 0.0;
+//        double retrievedRiskFreeRate = 0.0;
+//        double retrievedVolatility = 0.0;
+//        char retrievedOptionType = 'C';
+//
+//        // Handle any exceptions that may occur during database operations
+//        // throw std::runtime_error("Failed to connect to the database.");
+//
+//        // Validate and set the retrieved input values
+//        if (validateAndSetInputValues(model, retrievedUnderlyingPrice, retrievedStrikePrice,
+//                                      retrievedTimeToExpiration, retrievedRiskFreeRate,
+//                                      retrievedVolatility, retrievedOptionType)) {
+//            cout << "Input values retrieved from the database.\n";
+//        } // if
+//
+//    } catch (const exception& e) {
+//        cerr << "Error: " << e.what() << "\n";
+//    } // try-catch
+//
+//} // readInputFromDB()
 
 
 //// Reads input values from an API by making an HTTP request.

@@ -19,12 +19,13 @@ using namespace std;
 
 /*------------------------------  CONSTRUCTORS  ------------------------------*/
 // Default constructor.
-Program::Program() : inputMode("") {
+Program::Program() : inputMode(""), external(""){
     fast_io();
 
     ios_base::sync_with_stdio(false);
 
     getInputMode();
+    getExternal();
 }
 
 
@@ -49,14 +50,26 @@ void Program::get_options(int argc, char* argv[]) {
 
                 setInputMode(inputMode); // Set the input mode.
 
-                // Check if an invalid mode is specified:
-                if (inputMode != "USER" && inputMode != "FILE"
-                                        && inputMode != "DB" && inputMode != "API") {
+                if (argc < 4 && inputMode != "USER") {
+                    cerr << "Must provide valid external source file\n";
+                    exit(-1);
+                }
+
+                if (inputMode == "USER") {
+                    break;
+                }
+
+                if (inputMode == "FILE" || inputMode == "DB" || inputMode == "API") {
+                    external = argv[3]; // Set the external file name.
+                    break;
+                } else {
                     cerr << "Invalid mode \"" + inputMode + "\""; // Print to standard error.
                     invalidMode = true; // Set invalidMode to true.
-                } // if
-                break; // Break out of the switch statement.
-                
+                    break;
+                }
+
+                // TODO: Give user option to retype input mode.
+
             // If the "help" option is flagged:
             case 'h':
                 printHelp(argv); // Print a helpful message.
@@ -85,9 +98,18 @@ void Program::get_options(int argc, char* argv[]) {
 } // get_options()
 
 
+// TODO: Make sure external file ends in .JSON or .CSV.
+//void Program::validateExternalFile(string fileName) {
+
+//}
 
 const string& Program::getInputMode() const {
     return inputMode;
+}
+
+
+const string& Program::getExternal() const {
+    return external;
 }
 
 void Program::setInputMode(const string& inputMode_) {
@@ -126,14 +148,15 @@ void Program::launchAlgo(blackScholesModel* model) {
 
     // File input:
     else if (inputMode == "FILE") {
-        string filename = "option_GS_df.csv";
+//        string filename = "option_GS_df.csv";
+        string filename = external;
         inputReader.readInputFromFile(*model, filename);
     } // elif
 
-    // Database input:
-    else if (inputMode == "DB") {
-        inputReader.readInputFromDB(*model);
-    } // elif
+//    // Database input:
+//    else if (inputMode == "DB") {
+//        inputReader.readInputFromDB(*model);
+//    } // elif
 
 //    // External data feed (e.g. API) input:
 //    else if (inputMode == "API") {
