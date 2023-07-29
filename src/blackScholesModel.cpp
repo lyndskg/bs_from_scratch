@@ -11,7 +11,7 @@
 #include <cassert>
 
 #include "blackScholesModel.h"
-#include "../Program.h"
+#include "Program.h"
 using namespace std;
 
 

@@ -1,0 +1,19 @@
+# ninja log v5
+0	107	1690628321168558516	googletest-download-prefix/src/googletest-download-stamp/googletest-download-mkdir	ba6183d93ff61ba0
+2426	2537	1690628323599903314	/Users/lyndseygu/Projects/C++/FML/cmake-build-minsizerel/googletest-download/googletest-download-prefix/src/googletest-download-stamp/googletest-download-install	5c1e0186c68c0cd6
+2315	2426	1690628323488700523	/Users/lyndseygu/Projects/C++/FML/cmake-build-minsizerel/googletest-download/googletest-download-prefix/src/googletest-download-stamp/googletest-download-build	e8d9ed3501534c69
+107	2109	1690628323171741852	googletest-download-prefix/src/googletest-download-stamp/googletest-download-download	c3a35dcf8a07ef03
+2212	2315	1690628323378004399	googletest-download-prefix/src/googletest-download-stamp/googletest-download-configure	68a4f0ecd3e1b174
+2212	2315	1690628323378004399	/Users/lyndseygu/Projects/C++/FML/cmake-build-minsizerel/googletest-download/googletest-download-prefix/src/googletest-download-stamp/googletest-download-configure	68a4f0ecd3e1b174
+2109	2212	1690628323275049293	/Users/lyndseygu/Projects/C++/FML/cmake-build-minsizerel/googletest-download/googletest-download-prefix/src/googletest-download-stamp/googletest-download-patch	ee284063da633a87
+0	107	1690628321168558516	/Users/lyndseygu/Projects/C++/FML/cmake-build-minsizerel/googletest-download/googletest-download-prefix/src/googletest-download-stamp/googletest-download-mkdir	ba6183d93ff61ba0
+2109	2212	1690628323275049293	googletest-download-prefix/src/googletest-download-stamp/googletest-download-patch	ee284063da633a87
+107	2109	1690628323171741852	/Users/lyndseygu/Projects/C++/FML/cmake-build-minsizerel/googletest-download/googletest-download-prefix/src/googletest-download-stamp/googletest-download-download	c3a35dcf8a07ef03
+2646	2777	1690628323840004854	/Users/lyndseygu/Projects/C++/FML/cmake-build-minsizerel/googletest-download/googletest-download-prefix/src/googletest-download-stamp/googletest-download-done	14c575805fed72e9
+2646	2777	1690628323840004854	CMakeFiles/googletest-download-complete	14c575805fed72e9
+2315	2426	1690628323488700523	googletest-download-prefix/src/googletest-download-stamp/googletest-download-build	e8d9ed3501534c69
+2537	2646	1690628323708100057	/Users/lyndseygu/Projects/C++/FML/cmake-build-minsizerel/googletest-download/googletest-download-prefix/src/googletest-download-stamp/googletest-download-test	893c92a8b3cce9
+2426	2537	1690628323599903314	googletest-download-prefix/src/googletest-download-stamp/googletest-download-install	5c1e0186c68c0cd6
+2646	2777	1690628323840004854	/Users/lyndseygu/Projects/C++/FML/cmake-build-minsizerel/googletest-download/CMakeFiles/googletest-download-complete	14c575805fed72e9
+2537	2646	1690628323708100057	googletest-download-prefix/src/googletest-download-stamp/googletest-download-test	893c92a8b3cce9
+2646	2777	1690628323840004854	googletest-download-prefix/src/googletest-download-stamp/googletest-download-done	14c575805fed72e9

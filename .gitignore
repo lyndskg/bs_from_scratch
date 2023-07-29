@@ -1,0 +1,12 @@
+# Ignore build artifacts
+build/
+cmake-build-debug/
+
+# Ignore IDE-specific files
+.vscode/
+.idea/
+*.suo
+
+# Ignore system-specific files
+.DS_Store
+Thumbs.db

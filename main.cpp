@@ -12,9 +12,9 @@
 #include <algorithm>
 #include <cmath>
 
-#include "xcode_redirect.hpp"
-#include "Program.h"
-#include "inputReader.h"
+#include "dev/xcode_redirect.hpp"
+#include "src/Program.h"
+#include "src/inputReader.h"
 
 using namespace std;
 
