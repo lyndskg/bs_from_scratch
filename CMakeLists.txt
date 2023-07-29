@@ -1,7 +1,4 @@
-# Set the minimum CMake version required
 cmake_minimum_required(VERSION 3.25)
-
-# Set your project name and C++ standard
 project(BSFromScratch CXX)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -25,7 +22,7 @@ endforeach()
 foreach(src ${SRCS})
 	get_filename_component(obj_name ${src} NAME_WE)
 	add_compile_options("-arch" "arm64")
-	add_executable(${obj_name}.o ${src})
+	add_executable(${obj_name} ${CMAKE_SOURCE_DIR}/${src})
 endforeach()
 
 # Link rule to produce the final executable
@@ -50,8 +47,53 @@ set(CMAKE_OSX_ARCHITECTURES "arm64")
 # Specify the output directory for the final executable
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
-# Add any other libraries or link options here (if needed)
-# ...
+# Uncomment the following line if you want to define your own ASSERT_TRUE macro
+#target_compile_definitions(test_bs PRIVATE ASSERT_TRUE(expr) if (!(expr)) { GTEST_FATAL_FAILURE_("Assertion failed: ") expr)
+
+# Uncomment if you want to enable unit tests
+enable_testing()
+
+# Define the source files used in the test programs
+set(TESTSRCS
+		gtest.cpp
+		test/testProgram.cpp
+		include/customMake/unit_test_framework.h
+		test/testInputReader.cpp
+		test/testBlackScholesModel.cpp
+		)
+
+# Create object file names from test source file names
+set(TESTOBJS)
+foreach(src ${TESTSRCS})
+	get_filename_component(obj_name ${src} NAME_WE)
+	list(APPEND TESTOBJS ${CMAKE_BINARY_DIR}/${obj_name}.o)
+endforeach()
+
+# Compile rule for each test .cpp file to produce .o files
+foreach(src ${TESTSRCS})
+	get_filename_component(obj_name ${src} NAME_WE)
+	add_compile_options("-arch" "arm64")
+	add_executable(${obj_name} ${CMAKE_SOURCE_DIR}/${src})
+endforeach()
+
+# Link rule to produce the test executable(s)
+add_executable(bs_test ${TESTOBJS} ${SRCS})
+target_link_options(bs_test PRIVATE "-arch" "arm64")
+target_link_libraries(bs_test PRIVATE gtest gtest_main)
+
+# Define ASSERT_TRUE macro if using Google Test
+target_compile_definitions(bs_test PRIVATE USE_GTEST)
+
+# Register the test with CTest
+add_test(NAME default_ctor COMMAND bs_test)
+
+# Optionally, you can define your own ASSERT_TRUE macro
+# Uncomment the following line if you want to define your own ASSERT_TRUE macro
+# target_compile_definitions(runUnitTests PRIVATE ASSERT_TRUE(expr) if (!(expr)) { GTEST_FATAL_FAILURE_("Assertion failed: ") expr)
+
+# Optionally, you can define your own ASSERT_TRUE macro
+# Uncomment the following line if you want to define your own ASSERT_TRUE macro
+# target_compile_definitions(runUnitTests PRIVATE ASSERT_TRUE(expr) if (!(expr)) { GTEST_FATAL_FAILURE_("Assertion failed: ") expr)
 
 #
 ## Set the output directory for executables to 'bin'
@@ -131,8 +173,3 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 #enable_testing()
 #add_test(NAME test_default_ctor COMMAND testProgram.cpp)
 #add_test(NAME test_get_opts COMMAND testProgram.cpp)
-
-## Add a custom target for cleaning the build
-#add_custom_target(clean COMMAND ${CMAKE_COMMAND} -E remove_directory ${CMAKE_BINARY_DIR}
-#        		        COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_BINARY_DIR})
-

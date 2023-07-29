@@ -1,4 +1,0 @@
-/Users/lyndseygu/Projects/C++/bs-from-scratch/cmake-build-debug/CMakeFiles/bs.dir
-/Users/lyndseygu/Projects/C++/bs-from-scratch/cmake-build-debug/CMakeFiles/test_bs.dir
-/Users/lyndseygu/Projects/C++/bs-from-scratch/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Users/lyndseygu/Projects/C++/bs-from-scratch/cmake-build-debug/CMakeFiles/rebuild_cache.dir
