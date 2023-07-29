@@ -1,14 +1,81 @@
 /private/var/folders/2k/1zjkt82s4j12s0hx2bfmmsl80000gn/T/AppTranslocation/7C12DE09-1F6F-4859-BC6D-1153D5F5F2FC/d/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/private/var/folders/2k/1zjkt82s4j12s0hx2bfmmsl80000gn/T/AppTranslocation/7C12DE09-1F6F-4859-BC6D-1153D5F5F2FC/d/CLion.app/Contents/bin/ninja/mac/ninja -G Ninja -S /Users/lyndseygu/Projects/C++/bs-from-scratch -B /Users/lyndseygu/Projects/C++/bs-from-scratch/cmake-build-debug
-CMake Error at CMakeLists.txt:17 (add_subdirectory):
-  The source directory
+CMake Error at /private/var/folders/2k/1zjkt82s4j12s0hx2bfmmsl80000gn/T/AppTranslocation/7C12DE09-1F6F-4859-BC6D-1153D5F5F2FC/d/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/CTestTargets.cmake:14 (file):
+  file problem creating directory:
+  /Users/lyndseygu/Projects/C++/bs-from-scratch/cmake-build-debug/test/Testing/Temporary
+Call Stack (most recent call first):
+  /private/var/folders/2k/1zjkt82s4j12s0hx2bfmmsl80000gn/T/AppTranslocation/7C12DE09-1F6F-4859-BC6D-1153D5F5F2FC/d/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/CTest.cmake:264 (include)
+  test/CMakeLists.txt:11 (include)
 
-    /Users/lyndseygu/Projects/C++/bs-from-scratch/src
 
-  does not contain a CMakeLists.txt file.
+CMake Error: Could not open file for write in copy operation /Users/lyndseygu/Projects/C++/bs-from-scratch/cmake-build-debug/test/DartConfiguration.tcl.tmp
+CMake Error: : System Error: Not a directory
+CMake Error at /private/var/folders/2k/1zjkt82s4j12s0hx2bfmmsl80000gn/T/AppTranslocation/7C12DE09-1F6F-4859-BC6D-1153D5F5F2FC/d/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/CTestTargets.cmake:28 (configure_file):
+  configure_file Problem configuring file
+Call Stack (most recent call first):
+  /private/var/folders/2k/1zjkt82s4j12s0hx2bfmmsl80000gn/T/AppTranslocation/7C12DE09-1F6F-4859-BC6D-1153D5F5F2FC/d/CLion.app/Contents/bin/cmake/mac/share/cmake-3.25/Modules/CTest.cmake:264 (include)
+  test/CMakeLists.txt:11 (include)
 
 
-CMake Error at CMakeLists.txt:18 (add_subdirectory):
-  add_subdirectory given source "test" which is not an existing directory.
+-- Downloading/updating googletest
+CMake Deprecation Warning at CMakeLists.txt:4 (cmake_minimum_required):
+  Compatibility with CMake < 2.8.12 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value or use a ...<max> suffix to tell
+  CMake that the project does not need compatibility with older versions.
+
+
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /Users/lyndseygu/Projects/C++/bs-from-scratch/cmake-build-debug/googletest-download
+[1/7] Performing download step (git clone) for 'googletest-download'
+Cloning into 'googletest-src'...
+Already on 'main'
+Your branch is up to date with 'origin/main'.
+[2/7] No patch step for 'googletest-download'
+[3/7] No configure step for 'googletest-download'
+[4/7] No build step for 'googletest-download'
+[5/7] No install step for 'googletest-download'
+[6/7] No test step for 'googletest-download'
+[7/7] Completed 'googletest-download'
+-- Found Python3: /opt/homebrew/Frameworks/Python.framework/Versions/3.9/bin/python3.9 (found version "3.9.17") found components: Interpreter 
+-- Found Threads: TRUE  
+CMake Error at test/CMakeLists.txt:107 (add_executable):
+  add_executable cannot create target "test" because another target with the
+  same name already exists.  The existing target is an executable created in
+  source directory "/Users/lyndseygu/Projects/C++/bs-from-scratch/test".  See
+  documentation for policy CMP0002 for more details.
+
+
+CMake Error at deps/googletest/googlemock/CMakeLists.txt:50 (add_subdirectory):
+  add_subdirectory given source "deps/gtest" which is not an existing
+  directory.
+
+
+CMake Error at cmake-build-debug/googletest-src/googletest/cmake/internal_utils.cmake:165 (add_library):
+  add_library cannot create target "gmock" because another target with the
+  same name already exists.  The existing target is a static library created
+  in source directory
+  "/Users/lyndseygu/Projects/C++/bs-from-scratch/cmake-build-debug/googletest-src/googlemock".
+  See documentation for policy CMP0002 for more details.
+Call Stack (most recent call first):
+  cmake-build-debug/googletest-src/googletest/cmake/internal_utils.cmake:210 (cxx_library_with_type)
+  deps/googletest/googlemock/CMakeLists.txt:96 (cxx_library)
+
+
+CMake Error at cmake-build-debug/googletest-src/googletest/cmake/internal_utils.cmake:165 (add_library):
+  add_library cannot create target "gmock_main" because another target with
+  the same name already exists.  The existing target is a static library
+  created in source directory
+  "/Users/lyndseygu/Projects/C++/bs-from-scratch/cmake-build-debug/googletest-src/googlemock".
+  See documentation for policy CMP0002 for more details.
+Call Stack (most recent call first):
+  cmake-build-debug/googletest-src/googletest/cmake/internal_utils.cmake:210 (cxx_library_with_type)
+  deps/googletest/googlemock/CMakeLists.txt:99 (cxx_library)
+
+
+CMake Error at CMakeLists.txt:74 (install):
+  install TARGETS given target "your_executable" which does not exist.
 
 
 -- Configuring incomplete, errors occurred!

@@ -7,7 +7,8 @@
 #include <iostream>
 #include <fstream>
 
-#include "../include/custom make/unit_test_framework.h"
+#include "../include/customMake/unit_test_framework.h"
+#include "../deps/gtest/gtest.h"
 #include "../src/Program.h"
 #include "../src/inputReader.h"
 #include "../src/Program.cpp"

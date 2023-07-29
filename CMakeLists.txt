@@ -1,24 +1,51 @@
-# Set the minimum macOS version required
+# Set the minimum CMake version required
 cmake_minimum_required(VERSION 3.25)
 
 # Set your project name and C++ standard
 project(black-scholes CXX)
 set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-## Set the output extension for C++ object files
-#set(CMAKE_CXX_OUTPUT_EXTENSION .o)
+# Set the output directory for executables to 'bin'
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
-# Set additional compiler flags
+# Add the 'src' subdirectory for your main project source files
+add_subdirectory(src)
+
+# Add the 'test' subdirectory for unit tests
+add_subdirectory(test)
+
+## Add the 'data' subdirectory for input data files
+#add_subdirectory(data)
+
+# Add a subdirectory for Google Test (GTest)
+add_subdirectory(deps/googletest)
+
+# Add any additional subdirectories here (if needed)
+# ...
+
+# Set additional compiler flags for all targets
 set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} "-Wconversion -Wall -Werror -Wextra -pedantic")
 
-# Set the arm64 architecture as the target
+# Set the target architecture to arm64 for macOS
 set(CMAKE_OSX_ARCHITECTURES arm64)
-
-add_subdirectory(src)
-add_subdirectory(test)
 
 # Add your main executable sources to the target (e.g., "bs" in this case)
 add_executable(bs main.cpp src/Program.cpp src/inputReader.cpp src/blackScholesModel.cpp)
+
+# Add a custom target for cleaning the build
+add_custom_target(clean_target COMMAND ${CMAKE_COMMAND} -E remove_directory ${CMAKE_BINARY_DIR}
+		COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_BINARY_DIR})
+
+# Include directories for your library and custom test framework
+include_directories(
+		include
+		include/customMake
+		deps/gtest
+)
+
+# Link Google Test to your main project and tests
+target_link_libraries(bs PRIVATE gtest gtest_main)
 
 # Copy the contents of the data directory to the build directory
 file(COPY data DESTINATION ${CMAKE_BINARY_DIR})
@@ -40,29 +67,24 @@ target_compile_options(bs PRIVATE "$<$<CONFIG:Release>:-O3>")
 target_compile_options(bs PRIVATE "$<$<CONFIG:RelWithDebInfo>:-g3 -O3>")
 target_compile_options(bs PRIVATE "$<$<CONFIG:MinSizeRel>:-Os -g0 -finline-functions -flto -fomit-frame-pointer>")
 
-# Define ASSERT_TRUE macro if using Google Test
-target_compile_definitions(test_bs PRIVATE schlisselTest)
+# Optionally, you can generate a Makefile or IDE project files for users
+# For example, for Makefile:
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+# For example, for Xcode:
+set(CMAKE_XCODE_GENERATE_SCHEME ON)
 
-## Find and include Google Test
-#find_package(GTest REQUIRED)
-#
-## Link the test executable against the Google Test library
-#target_link_libraries(test_bs PRIVATE GTest::GTest GTest::Main)
+# You can install your project files if needed (optional)
+install(TARGETS your_executable DESTINATION bin)
 
-## Define ASSERT_TRUE macro if using Google Test
-#target_compile_definitions(test_bs PRIVATE USE_GTEST)
-
-## Optionally, you can define your own ASSERT_TRUE macro
-## Uncomment the following line if you want to define your own ASSERT_TRUE macro
+# Uncomment the following line if you want to define your own ASSERT_TRUE macro
 #target_compile_definitions(test_bs PRIVATE ASSERT_TRUE(expr) if (!(expr)) { GTEST_FATAL_FAILURE_("Assertion failed: ") expr)
+
+# Uncomment if you want to enable unit tests
+#enable_testing()
+#add_test(NAME test_default_ctor COMMAND testProgram.cpp)
+#add_test(NAME test_get_opts COMMAND testProgram.cpp)
 
 ## Add a custom target for cleaning the build
 #add_custom_target(clean COMMAND ${CMAKE_COMMAND} -E remove_directory ${CMAKE_BINARY_DIR}
 #        		        COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_BINARY_DIR})
 
-#enable_testing()
-#add_test(NAME test_default_ctor COMMAND Program_tests.cpp)
-#add_test(NAME test_get_opts COMMAND Program_tests.cpp)
-
-
-#add_library(bs-from-scratch)
